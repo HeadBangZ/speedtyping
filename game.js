@@ -4,3 +4,21 @@ const theTimer = document.querySelector('.timer');
 const resetBtn = document.querySelector('#reset-btn');
 const charsPerMinute = document.querySelector('.cpm');
 
+// Leading Zero
+
+
+// The timer function
+
+
+// Spellcheck
+
+
+// Event Listerners
+
+
+// Result Calculation
+
+
+// Reset Game
+
+
