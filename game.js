@@ -4,14 +4,21 @@ const theTimer = document.querySelector('.timer');
 const resetBtn = document.querySelector('#reset-btn');
 const charsPerMinute = document.querySelector('.cpm');
 
+
+
 // Leading Zero
 
 
 // The timer function
-function startTimer() {
+function runTimer() {
+
+}
+
+// Start function to call the timer function
+function start() {
     let textEnteredLength = writtenText.value.length;
     if (textEnteredLength === 0) {
-        console.log(textEnteredLength);
+        setInterval(runTimer, 10);
     }
 }
 
@@ -25,8 +32,12 @@ function spellCheck() {
 
 
 // Reset Game
-
+function reset() {
+    writtenText.value = "";
+    writtenText.style.borderColor = "#666";
+}
 
 // Event Listerners
-writtenText.addEventListener('keypress', startTimer, false);
+writtenText.addEventListener('keypress', start, false);
 writtenText.addEventListener('keyup', spellCheck, false);
+resetBtn.addEventListener('click', reset, false);
