@@ -8,13 +8,18 @@ const charsPerMinute = document.querySelector('.cpm');
 
 
 // The timer function
-
+function startTimer() {
+    let textEnteredLength = writtenText.value.length;
+    if (textEnteredLength === 0) {
+        console.log(textEnteredLength);
+    }
+}
 
 // Spellcheck
-
-
-// Event Listerners
-
+function spellCheck() {
+    let textEnteredValue = writtenText.value;
+    console.log(textEnteredValue);
+}
 
 // Result Calculation
 
@@ -22,3 +27,6 @@ const charsPerMinute = document.querySelector('.cpm');
 // Reset Game
 
 
+// Event Listerners
+writtenText.addEventListener('keypress', startTimer, false);
+writtenText.addEventListener('keyup', spellCheck, false);
