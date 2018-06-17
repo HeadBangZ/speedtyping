@@ -4,8 +4,7 @@ const theTimer = document.querySelector('.timer');
 const resetBtn = document.querySelector('#reset-btn');
 const charsPerMinute = document.querySelector('.cpm');
 
-let timer = [0, 0, 0, 0];
-
+const timer = [0, 0, 0, 0];
 
 // Leading Zero
 function leadingZero(time) {
@@ -23,7 +22,6 @@ function runTimer() {
     timer[0] = Math.floor((timer[3] / 100) / 60);
     timer[1] = Math.floor((timer[3] / 100) - (timer[0] * 60));
     timer[2] = Math.floor(timer[3] - (timer[1] * 100) - (timer[0] * 6000));
-
 }
 
 // Start function to call the timer function
@@ -37,7 +35,17 @@ function start() {
 // Spellcheck
 function spellCheck() {
     let textEnteredValue = writtenText.value;
-    console.log(textEnteredValue);
+    if (textEnteredValue === originalText) {
+        writtenText.style.borderColor = "#00a86b";
+    } else {
+        if (originalText.substring(0, textEnteredValue.length) === textEnteredValue) {
+            writtenText.style.borderColor = "#189ad3";
+
+        } else {
+            writtenText.style.borderColor = "#c30101";
+        }
+    }
+
 }
 
 // Result Calculation
