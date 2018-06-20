@@ -5,7 +5,9 @@ const resetBtn = document.querySelector('#reset-btn');
 const charsPerMinute = document.querySelector('.cpm');
 const wordsPerMinute = document.querySelector('.wpm');
 
-const timer = [0, 0, 0, 0];
+let timer = [0, 0, 0, 0];
+let interval;
+let timerRuns = false;
 
 // Leading Zero
 function leadingZero(time) {
@@ -28,8 +30,9 @@ function runTimer() {
 // Start function to call the timer function
 function start() {
     let textEnteredLength = writtenText.value.length;
-    if (textEnteredLength === 0) {
-        setInterval(runTimer, 10);
+    if (textEnteredLength === 0 && !timerRuns) {
+        interval = setInterval(runTimer, 10);
+        timerRuns = true;
     }
 }
 
@@ -38,6 +41,7 @@ function spellCheck() {
     let textEnteredValue = writtenText.value;
     if (textEnteredValue === originalText) {
         writtenText.style.borderColor = "#00a86b";
+        clearInterval(interval);
         resultCalculation();
     } else {
         if (originalText.substring(0, textEnteredValue.length) === textEnteredValue) {
@@ -54,16 +58,22 @@ function spellCheck() {
 function resultCalculation() {
     let resultCharactersPerMinute = Math.round(60 / ((timer[0] * 60) + timer[1] + (timer[2] / 100)) * originalText.length);
     let resultWordsPerMinute = Math.round(60 / ((timer[0] * 60) + timer[1] + (timer[2] / 100)) * originalText.split(" ").length);
-
     charsPerMinute.innerHTML = "Characters per minute : " + resultCharactersPerMinute;
     wordsPerMinute.innerHTML = "Words per minute : " + resultWordsPerMinute;
-
+    interval = true;
 }
 
 // Reset Game
 function reset() {
+    clearInterval(interval);
+    interval = null;
+    timer = [0, 0, 0, 0];
+    timerRuns = false;
     writtenText.value = "";
     writtenText.style.borderColor = "#666";
+    theTimer.innerHTML = "00:00:00";
+    charsPerMinute.innerHTML = "";
+    wordsPerMinute.innerHTML = "";
 }
 
 // Event Listerners
